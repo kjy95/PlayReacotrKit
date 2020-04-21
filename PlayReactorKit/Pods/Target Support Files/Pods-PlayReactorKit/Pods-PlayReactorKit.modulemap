@@ -1,0 +1,6 @@
+framework module Pods_PlayReactorKit {
+  umbrella header "Pods-PlayReactorKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

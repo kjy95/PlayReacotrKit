@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,15 @@
 		923DCCEA24498AEB00A7B2AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 923DCCE824498AEB00A7B2AA /* LaunchScreen.storyboard */; };
 		923DCCF524498AEC00A7B2AA /* PlayReactorKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCCF424498AEC00A7B2AA /* PlayReactorKitTests.swift */; };
 		923DCD0024498AEC00A7B2AA /* PlayReactorKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCCFF24498AEC00A7B2AA /* PlayReactorKitUITests.swift */; };
+		923DCD0E2449926000A7B2AA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCD0D2449926000A7B2AA /* TabBarController.swift */; };
+		923DCD10244995FA00A7B2AA /* TabBarReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCD0F244995FA00A7B2AA /* TabBarReactor.swift */; };
+		923DCD14244D578000A7B2AA /* LocalDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCD13244D578000A7B2AA /* LocalDB.swift */; };
+		923DCD18244D70B100A7B2AA /* FavoriteListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCD17244D70B100A7B2AA /* FavoriteListViewCell.swift */; };
+		923DCD1A244D75AC00A7B2AA /* FavoriteListViewCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCD19244D75AC00A7B2AA /* FavoriteListViewCellReactor.swift */; };
+		923DCD1D244D8D9700A7B2AA /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCD1C244D8D9700A7B2AA /* Date+Ex.swift */; };
+		923DCD20244EB05E00A7B2AA /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCD1F244EB05E00A7B2AA /* MainListViewController.swift */; };
+		923DCD22244EB75400A7B2AA /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DCD21244EB75400A7B2AA /* FavoriteListViewController.swift */; };
+		AF198A16AA76B6CB60208C56 /* Pods_PlayReactorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A0A1AEDDF615C8F43300C73 /* Pods_PlayReactorKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A0A1AEDDF615C8F43300C73 /* Pods_PlayReactorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlayReactorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		923DCCDA24498AE900A7B2AA /* PlayReactorKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayReactorKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923DCCDD24498AE900A7B2AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		923DCCDF24498AE900A7B2AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +59,16 @@
 		923DCCFB24498AEC00A7B2AA /* PlayReactorKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayReactorKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		923DCCFF24498AEC00A7B2AA /* PlayReactorKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayReactorKitUITests.swift; sourceTree = "<group>"; };
 		923DCD0124498AEC00A7B2AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		923DCD0D2449926000A7B2AA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		923DCD0F244995FA00A7B2AA /* TabBarReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarReactor.swift; sourceTree = "<group>"; };
+		923DCD13244D578000A7B2AA /* LocalDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDB.swift; sourceTree = "<group>"; };
+		923DCD17244D70B100A7B2AA /* FavoriteListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewCell.swift; sourceTree = "<group>"; };
+		923DCD19244D75AC00A7B2AA /* FavoriteListViewCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewCellReactor.swift; sourceTree = "<group>"; };
+		923DCD1C244D8D9700A7B2AA /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
+		923DCD1F244EB05E00A7B2AA /* MainListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
+		923DCD21244EB75400A7B2AA /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
+		D14147E9559059A2CCA53AE9 /* Pods-PlayReactorKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayReactorKit.debug.xcconfig"; path = "Target Support Files/Pods-PlayReactorKit/Pods-PlayReactorKit.debug.xcconfig"; sourceTree = "<group>"; };
+		E499F8B36774A4B7E27960AA /* Pods-PlayReactorKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayReactorKit.release.xcconfig"; path = "Target Support Files/Pods-PlayReactorKit/Pods-PlayReactorKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF198A16AA76B6CB60208C56 /* Pods_PlayReactorKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,13 +97,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0462F45FA3E3563CCEBE1B4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A0A1AEDDF615C8F43300C73 /* Pods_PlayReactorKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		923DCCD124498AE900A7B2AA = {
 			isa = PBXGroup;
 			children = (
+				923DCD1B244D8D5500A7B2AA /* Extension */,
 				923DCCDC24498AE900A7B2AA /* PlayReactorKit */,
 				923DCCF324498AEC00A7B2AA /* PlayReactorKitTests */,
 				923DCCFE24498AEC00A7B2AA /* PlayReactorKitUITests */,
 				923DCCDB24498AE900A7B2AA /* Products */,
+				9C20DB2039C46AA6ADA5BAB4 /* Pods */,
+				0462F45FA3E3563CCEBE1B4E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +131,10 @@
 		923DCCDC24498AE900A7B2AA /* PlayReactorKit */ = {
 			isa = PBXGroup;
 			children = (
+				923DCD1E244EB03A00A7B2AA /* MainList */,
+				923DCD15244D6F9100A7B2AA /* Favorite */,
+				923DCD12244D576A00A7B2AA /* Core */,
+				923DCD112449963700A7B2AA /* TabBar */,
 				923DCCDD24498AE900A7B2AA /* AppDelegate.swift */,
 				923DCCDF24498AE900A7B2AA /* SceneDelegate.swift */,
 				923DCCE124498AE900A7B2AA /* ViewController.swift */,
@@ -128,6 +164,66 @@
 			path = PlayReactorKitUITests;
 			sourceTree = "<group>";
 		};
+		923DCD112449963700A7B2AA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				923DCD0D2449926000A7B2AA /* TabBarController.swift */,
+				923DCD0F244995FA00A7B2AA /* TabBarReactor.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		923DCD12244D576A00A7B2AA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				923DCD13244D578000A7B2AA /* LocalDB.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		923DCD15244D6F9100A7B2AA /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				923DCD21244EB75400A7B2AA /* FavoriteListViewController.swift */,
+				923DCD16244D6FAA00A7B2AA /* Cell */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		923DCD16244D6FAA00A7B2AA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				923DCD17244D70B100A7B2AA /* FavoriteListViewCell.swift */,
+				923DCD19244D75AC00A7B2AA /* FavoriteListViewCellReactor.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		923DCD1B244D8D5500A7B2AA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				923DCD1C244D8D9700A7B2AA /* Date+Ex.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		923DCD1E244EB03A00A7B2AA /* MainList */ = {
+			isa = PBXGroup;
+			children = (
+				923DCD1F244EB05E00A7B2AA /* MainListViewController.swift */,
+			);
+			path = MainList;
+			sourceTree = "<group>";
+		};
+		9C20DB2039C46AA6ADA5BAB4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D14147E9559059A2CCA53AE9 /* Pods-PlayReactorKit.debug.xcconfig */,
+				E499F8B36774A4B7E27960AA /* Pods-PlayReactorKit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +231,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 923DCD0424498AEC00A7B2AA /* Build configuration list for PBXNativeTarget "PlayReactorKit" */;
 			buildPhases = (
+				1217515FC4E214B9D268919F /* [CP] Check Pods Manifest.lock */,
 				923DCCD624498AE900A7B2AA /* Sources */,
 				923DCCD724498AE900A7B2AA /* Frameworks */,
 				923DCCD824498AE900A7B2AA /* Resources */,
+				1BDEAA3C46540DA7394AE6CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,12 +352,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1217515FC4E214B9D268919F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlayReactorKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1BDEAA3C46540DA7394AE6CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlayReactorKit/Pods-PlayReactorKit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlayReactorKit/Pods-PlayReactorKit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlayReactorKit/Pods-PlayReactorKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		923DCCD624498AE900A7B2AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923DCD22244EB75400A7B2AA /* FavoriteListViewController.swift in Sources */,
+				923DCD10244995FA00A7B2AA /* TabBarReactor.swift in Sources */,
+				923DCD1A244D75AC00A7B2AA /* FavoriteListViewCellReactor.swift in Sources */,
+				923DCD0E2449926000A7B2AA /* TabBarController.swift in Sources */,
+				923DCD20244EB05E00A7B2AA /* MainListViewController.swift in Sources */,
+				923DCD1D244D8D9700A7B2AA /* Date+Ex.swift in Sources */,
 				923DCCE224498AE900A7B2AA /* ViewController.swift in Sources */,
+				923DCD18244D70B100A7B2AA /* FavoriteListViewCell.swift in Sources */,
+				923DCD14244D578000A7B2AA /* LocalDB.swift in Sources */,
 				923DCCDE24498AE900A7B2AA /* AppDelegate.swift in Sources */,
 				923DCCE024498AE900A7B2AA /* SceneDelegate.swift in Sources */,
 			);
@@ -432,6 +580,7 @@
 		};
 		923DCD0524498AEC00A7B2AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D14147E9559059A2CCA53AE9 /* Pods-PlayReactorKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +599,7 @@
 		};
 		923DCD0624498AEC00A7B2AA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E499F8B36774A4B7E27960AA /* Pods-PlayReactorKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
