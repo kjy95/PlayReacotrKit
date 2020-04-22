@@ -112,7 +112,7 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
 class DetailHotelInfoViewReactor: Reactor {
     
     enum Action {
-        case switchFavoriteButton
+        case switchFavoriteButton(isOn: Bool)
     }
     
     enum Mutation {
@@ -121,19 +121,29 @@ class DetailHotelInfoViewReactor: Reactor {
     
     struct State {
         var hotelList: HotelListModel
+        var isFavorited: Bool
     }
  
     let initialState: State
     
     init(hotelList: HotelListModel) {
-        self.initialState = State(hotelList: hotelList)
+        self.initialState = State(hotelList: hotelList, isFavorited: false)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .switchFavoriteButton:
-            let isFavorited = 
-            return Observable.just(.switchFavorite(isFavorited))
+        case let .switchFavoriteButton(isOn):
+            let isFavorited = isOn
+            return Observable.just(Mutation.switchFavorite(isFavorited))
+        }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var newState = state
+        switch mutation {
+        case let .switchFavorite(isOn):
+            newState.hotelList.favorite = isOn
+            return newState
         }
     }
 }

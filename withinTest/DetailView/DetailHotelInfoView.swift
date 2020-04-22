@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+//set Reacotrkit
+import ReactorKit
+import RxSwift
 /**
  호텔 상세 페이지
  원본 이미지, 제목, 상세정보들을 화면에 표기
@@ -23,7 +25,12 @@ protocol DetailHotelInfoViewDelegate : class {
 }
 
 //호텔 상세 뷰
-class DetailHotelInfoView: UIView {
+class DetailHotelInfoView: UIView, View {
+    
+    //set reactorkit
+    var disposeBag = DisposeBag()
+    
+    
     //-------------------------------------------------------------
     //MARK: - define value
     //
@@ -51,7 +58,32 @@ class DetailHotelInfoView: UIView {
         super.init(coder: aDecoder)
     }
     
-
+    //binding
+    func bind(reactor: DetailHotelInfoViewReactor) {
+        //favoriteSwitch를 on하면 action일어남
+        self.favoriteSwitch.rx.isOn
+            .map { isOn in
+                return .switchFavoriteButton(isOn: isOn) }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        //api 호출 시 값 변경 후, setView
+        reactor.state
+            .map { $0.hotelList }
+            .bind{ [weak self] hotelInfo in
+                guard let self = self else { return }
+                self.setView(hotelInfo: hotelInfo)
+        }.disposed(by: self.disposeBag)
+        
+        //isFavorited 값 변경 때마다 값 setting
+        reactor.state
+        .map { $0.isFavorited }
+        .bind { [weak self] (isFavorited) in
+            guard let self = self else { return }
+            self.switchFavorite(isOn: isFavorited) }
+        .disposed(by: self.disposeBag)
+    }
+    
     func setView(hotelInfo : HotelListModel){
         // 호텔 정보 정의
         self.hotelInfo = hotelInfo

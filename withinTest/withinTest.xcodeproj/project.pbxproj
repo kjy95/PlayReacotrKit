@@ -26,7 +26,7 @@
 		064EF3DB33DE94E83E441FC5 /* Pods_withinTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_withinTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF853FE123025EA2003A4588 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BF853FE72302F833003A4588 /* DetailHotelInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailHotelInfoView.swift; sourceTree = "<group>"; };
-		BF853FE92302FA82003A4588 /* DetailHotelInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailHotelInfoViewController.swift; path = withinTest/Controller/DetailHotelInfoViewController.swift; sourceTree = SOURCE_ROOT; };
+		BF853FE92302FA82003A4588 /* DetailHotelInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailHotelInfoViewController.swift; path = DetailView/DetailHotelInfoViewController.swift; sourceTree = SOURCE_ROOT; };
 		BF853FEB2302FF2A003A4588 /* FavoriteHotelTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteHotelTableTableViewController.swift; path = withinTest/Controller/FavoriteHotelTableTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		BF853FF12306F69C003A4588 /* FavoriteHotelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteHotelTableViewCell.swift; sourceTree = "<group>"; };
 		BFCD02F7230151B000B68FAF /* withinTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = withinTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,11 +71,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		92601B81244FD0170066BFAE /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				BF853FE92302FA82003A4588 /* DetailHotelInfoViewController.swift */,
+				BF853FE72302F833003A4588 /* DetailHotelInfoView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		BF853FE323025EA9003A4588 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				BF853FEB2302FF2A003A4588 /* FavoriteHotelTableTableViewController.swift */,
-				BF853FE92302FA82003A4588 /* DetailHotelInfoViewController.swift */,
 				BFCD031523025DA300B68FAF /* AllHotelTableViewController.swift */,
 				BF853FE123025EA2003A4588 /* TabBarController.swift */,
 			);
@@ -85,7 +93,6 @@
 		BF853FE62302F7D3003A4588 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BF853FE72302F833003A4588 /* DetailHotelInfoView.swift */,
 				BF853FF12306F69C003A4588 /* FavoriteHotelTableViewCell.swift */,
 				BFCD03132301AB9100B68FAF /* AllHotelTableViewCell.swift */,
 			);
@@ -95,6 +102,7 @@
 		BFCD02EE230151B000B68FAF = {
 			isa = PBXGroup;
 			children = (
+				92601B81244FD0170066BFAE /* DetailView */,
 				BFCD02F9230151B000B68FAF /* withinTest */,
 				BFCD02F8230151B000B68FAF /* Products */,
 				071EADF2D3A4AB67BE16DD5E /* Pods */,
