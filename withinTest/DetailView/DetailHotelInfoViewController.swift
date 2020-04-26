@@ -14,8 +14,10 @@ import RxCocoa
 /**
  상세 뷰 컨트롤러
  */
-class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelegate{
+class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelegate, StoryboardView{ 
     // MARK: - define value
+    //set reactorkit
+    var disposeBag = DisposeBag()
     
     //view
     @IBOutlet weak var detailHotelInfoView: DetailHotelInfoView!
@@ -23,30 +25,60 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
     //hotel model
     var currentHotelModel : HotelListModel?
     
+    //MARK: - Reactor Binding
+    func bind(reactor: DetailHotelInfoViewReactor) {
+       
+       //MARK: state
+       //hotelList 값 setting, setView
+       reactor.state
+           .map { $0.hotelList }
+           .bind{ [weak self] hotelInfo in
+               guard let self = self else { return }
+               self.currentHotelModel = hotelInfo
+               self.detailHotelInfoView.setView(hotelInfo: hotelInfo)
+       }.disposed(by: self.disposeBag)
+       
+       //isFavorited 값 변경 때마다 값 setting
+       reactor.state
+           .map { $0.isFavorited }
+       .bind { [weak self] (isFavorited) in
+           guard let self = self else { return }
+           //UPDATE view
+           self.detailHotelInfoView.switchFavorite(isOn: isFavorited)
+           //UPDATE model
+            if self.currentHotelModel?.favorite != isFavorited{
+                self.switchFavorite(isOn : isFavorited )
+            }
+       }
+       .disposed(by: self.disposeBag)
+        //MARK: Action
+       //favoriteSwitch 상태 변화 - action
+        self.detailHotelInfoView.favoriteSwitch.rx.isOn.changed
+          .map { isOn in
+              return .switchFavoriteButton(isOn: isOn) }
+          .bind(to: reactor.action)
+          .disposed(by: self.disposeBag)
+          
+       
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //delegate
         detailHotelInfoView.delegate = self
         
-        //set view
-        detailHotelInfoView.setView(hotelInfo: currentHotelModel ?? HotelListModel(thumbnail: "nil", name: "nil", id: -1, rate: -1, favorite: false, descriptions: ["nil" : "nil"], favoriteAssignTime: "0"))
     }
-    
  
     // MARK: - delegate
     
     func switchFavorite(isOn: Bool) {
         //UPDATE favorite
         //UPDATE Model
-        self.currentHotelModel?.favorite = isOn
-        self.currentHotelModel?.saveCurrentTime()
-        //UPDATE View
-        self.detailHotelInfoView.switchFavorite(isOn: isOn)
-        
+        currentHotelModel?.favorite = isOn
+        currentHotelModel?.saveCurrentTime()
         
         //Save favorite data at UserDefault
-        if isOn{
+        if isOn == true{
             if UserDefaults.standard.object(forKey: "favorite") != nil {
                 
                 let userDefaults = UserDefaults.standard
@@ -55,7 +87,7 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
                 let decoded  = userDefaults.data(forKey: "favorite")
                 var decodedFavorites = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as! [HotelListModel]
                 //append current hotel
-                decodedFavorites.append(self.currentHotelModel ?? HotelListModel(thumbnail: "nil", name: "nil", id: -1, rate: -1, favorite: false, descriptions: ["nil" : "nil"], favoriteAssignTime: "0"))
+                decodedFavorites.append(currentHotelModel ?? HotelListModel(thumbnail: "nil", name: "nil", id: -1, rate: -1, favorite: false, descriptions: ["nil" : "nil"], favoriteAssignTime: "0"))
                 
                 //save
                 let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: decodedFavorites)
@@ -64,7 +96,7 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
                 
             }else{
                 var favoriteList = [HotelListModel]()
-                favoriteList.append(self.currentHotelModel ?? HotelListModel(thumbnail: "nil", name: "nil", id: -1, rate: -1, favorite: false, descriptions: ["nil" : "nil"], favoriteAssignTime: "0"))
+                favoriteList.append(currentHotelModel ?? HotelListModel(thumbnail: "nil", name: "nil", id: -1, rate: -1, favorite: false, descriptions: ["nil" : "nil"], favoriteAssignTime: "0"))
                 
                 //save
                 let userDefaults = UserDefaults.standard
@@ -73,7 +105,7 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
                 userDefaults.synchronize()
                 
             }
-        }else if !isOn{//delete data
+        }else if isOn == false{//delete data
             if UserDefaults.standard.object(forKey: "favorite") != nil {
                 
                 let userDefaults = UserDefaults.standard
@@ -85,7 +117,7 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
                 //delete current hotel
                 var index = 0
                 for favorite in decodedFavorites{
-                    if favorite.id == self.currentHotelModel?.id{
+                    if favorite.id == currentHotelModel?.id{
                         decodedFavorites.remove(at: index) 
                         break
                     }
@@ -127,7 +159,8 @@ class DetailHotelInfoViewReactor: Reactor {
     let initialState: State
     
     init(hotelList: HotelListModel) {
-        self.initialState = State(hotelList: hotelList, isFavorited: false)
+        //hotel model 가져와서 그 안에 있는 favorite가져와서 셋팅
+        self.initialState = State(hotelList: hotelList, isFavorited: hotelList.favorite)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -136,14 +169,18 @@ class DetailHotelInfoViewReactor: Reactor {
             let isFavorited = isOn
             return Observable.just(Mutation.switchFavorite(isFavorited))
         }
+        
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
         case let .switchFavorite(isOn):
-            newState.hotelList.favorite = isOn
+            if state.hotelList.favorite != isOn { 
+                newState.isFavorited = isOn
+            }
             return newState
         }
     }
 }
+   

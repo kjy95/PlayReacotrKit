@@ -170,18 +170,18 @@ class FavoriteHotelTableTableViewController: UITableViewController, FavoriteHote
         if self.favoritList.count > 0{
             //switch tag
             cell.favoriteSwitch.tag = indexPath.row
-            
+            print( indexPath.row)
             
             //set hotel info
             let hotel = self.favoritList[indexPath.row]
             cell.name.text = hotel.name
             let url = URL(string: hotel.thumbnail)
             let data = try? Data(contentsOf: url!)
-            cell.thumbnail.image = UIImage(data: data!)
+//            cell.thumbnail.image = UIImage(data: data!)
             cell.rate.text = "평점:\(String(hotel.rate))"
             cell.favoriteSwitch.isOn = hotel.favorite
             cell.favoritedTime.text = hotel.favoriteAssignTime
-            print(hotel.favoriteAssignTime)
+//            print(hotel.favoriteAssignTime)
         }
         
         return cell
@@ -198,8 +198,9 @@ class FavoriteHotelTableTableViewController: UITableViewController, FavoriteHote
         let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailViewController") as! DetailHotelInfoViewController
         
         //send model
-        detailViewController.currentHotelModel = favoritList[indexPath.row]
-        
+       detailViewController.currentHotelModel = favoritList[indexPath.row]
+        //fullscreen으로 present
+        detailViewController.modalPresentationStyle = .fullScreen
         self.present(detailViewController, animated: true, completion: nil)
         
         

@@ -263,9 +263,11 @@ class AllHotelTableViewController: UITableViewController, AllHotelTableViewCellD
         
         let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailViewController") as! DetailHotelInfoViewController
         
-        //send model
-        detailViewController.currentHotelModel = allList[indexPath.row]
-        
+       //set reactor initial model\
+       detailViewController.reactor = DetailHotelInfoViewReactor(hotelList: allList[indexPath.row])
+        //fullscreen으로 present
+        detailViewController.modalPresentationStyle = .fullScreen
+              
         self.present(detailViewController, animated: true, completion: nil)
         
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//set Reacotrkit
+//Reacotrkit
 import ReactorKit
 import RxSwift
 /**
@@ -25,7 +25,7 @@ protocol DetailHotelInfoViewDelegate : class {
 }
 
 //호텔 상세 뷰
-class DetailHotelInfoView: UIView, View {
+class DetailHotelInfoView: UIView {
     
     //set reactorkit
     var disposeBag = DisposeBag()
@@ -35,8 +35,9 @@ class DetailHotelInfoView: UIView, View {
     //MARK: - define value
     //
     
-    //UI 
+    //UI
     @IBOutlet weak var hotelName: UILabel!
+    @IBOutlet weak var exitBtn: UIButton!
     @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var hotelImage: UIImageView!
     @IBOutlet weak var favoriteSwitch: UISwitch!
@@ -51,37 +52,10 @@ class DetailHotelInfoView: UIView, View {
     //MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    //binding
-    func bind(reactor: DetailHotelInfoViewReactor) {
-        //favoriteSwitch를 on하면 action일어남
-        self.favoriteSwitch.rx.isOn
-            .map { isOn in
-                return .switchFavoriteButton(isOn: isOn) }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        
-        //api 호출 시 값 변경 후, setView
-        reactor.state
-            .map { $0.hotelList }
-            .bind{ [weak self] hotelInfo in
-                guard let self = self else { return }
-                self.setView(hotelInfo: hotelInfo)
-        }.disposed(by: self.disposeBag)
-        
-        //isFavorited 값 변경 때마다 값 setting
-        reactor.state
-        .map { $0.isFavorited }
-        .bind { [weak self] (isFavorited) in
-            guard let self = self else { return }
-            self.switchFavorite(isOn: isFavorited) }
-        .disposed(by: self.disposeBag)
     }
     
     func setView(hotelInfo : HotelListModel){
@@ -96,7 +70,7 @@ class DetailHotelInfoView: UIView, View {
         let data = try? Data(contentsOf: url!)
         self.hotelImage.image = UIImage(data: data!)
         //switch
-        self.favoriteSwitch.isOn = hotelInfo.favorite
+//        self.favoriteSwitch.isOn = hotelInfo.favorite
     }
     
     func switchFavorite(isOn : Bool){
@@ -107,7 +81,7 @@ class DetailHotelInfoView: UIView, View {
     //
     
     @IBAction func favorite(_ sender: UISwitch) {
-        delegate?.switchFavorite(isOn : sender.isOn)
+//        delegate?.switchFavorite(isOn : sender.isOn)
     }
     
     @IBAction func exitButton(_ sender: Any) {

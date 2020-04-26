@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF0A73AD2455654400B4E861 /* Ex+Reactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A73AC2455654400B4E861 /* Ex+Reactor.swift */; };
 		BF853FE223025EA2003A4588 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF853FE123025EA2003A4588 /* TabBarController.swift */; };
 		BF853FE82302F833003A4588 /* DetailHotelInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF853FE72302F833003A4588 /* DetailHotelInfoView.swift */; };
 		BF853FEA2302FA82003A4588 /* DetailHotelInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF853FE92302FA82003A4588 /* DetailHotelInfoViewController.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		064EF3DB33DE94E83E441FC5 /* Pods_withinTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_withinTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF0A73AC2455654400B4E861 /* Ex+Reactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Reactor.swift"; sourceTree = "<group>"; };
 		BF853FE123025EA2003A4588 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BF853FE72302F833003A4588 /* DetailHotelInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailHotelInfoView.swift; sourceTree = "<group>"; };
 		BF853FE92302FA82003A4588 /* DetailHotelInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailHotelInfoViewController.swift; path = DetailView/DetailHotelInfoViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -76,6 +78,7 @@
 			children = (
 				BF853FE92302FA82003A4588 /* DetailHotelInfoViewController.swift */,
 				BF853FE72302F833003A4588 /* DetailHotelInfoView.swift */,
+				BF0A73AC2455654400B4E861 /* Ex+Reactor.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				BFCD03142301AB9100B68FAF /* AllHotelTableViewCell.swift in Sources */,
 				BF853FE223025EA2003A4588 /* TabBarController.swift in Sources */,
 				BFCD031623025DA300B68FAF /* AllHotelTableViewController.swift in Sources */,
+				BF0A73AD2455654400B4E861 /* Ex+Reactor.swift in Sources */,
 				BFCD02FB230151B000B68FAF /* AppDelegate.swift in Sources */,
 				BFCD030D2301602100B68FAF /* AllHotelListModel.swift in Sources */,
 			);
