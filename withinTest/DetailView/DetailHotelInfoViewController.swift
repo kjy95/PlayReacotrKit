@@ -16,7 +16,7 @@ import RxCocoa
  */
 class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelegate, StoryboardView{ 
     // MARK: - define value
-    //set reactorkit
+    
     var disposeBag = DisposeBag()
     
     //view
@@ -24,36 +24,42 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
     
     //hotel model
     var currentHotelModel : HotelListModel?
+    //VC 원래는 delegate 를 이용해 view의 data를 mapping 시켜주거나 view input을 가져와 데이터저장을 하는 용도
+    //데이터 가공, mapping을 reactorkit을 이용
     
     //MARK: - Reactor Binding
     func bind(reactor: DetailHotelInfoViewReactor) {
        
        //MARK: state
-       //hotelList 값 setting, setView
+       //VC가 화면에 나올때 hotelList 값 setting, setView
        reactor.state
-           .map { $0.hotelList }
-           .bind{ [weak self] hotelInfo in
+        .map { $0.hotelList }
+        .distinctUntilChanged()
+        .bind{ [weak self] hotelInfo in
                guard let self = self else { return }
+               //UPDATE model
                self.currentHotelModel = hotelInfo
+               //UPDATE view
                self.detailHotelInfoView.setView(hotelInfo: hotelInfo)
        }.disposed(by: self.disposeBag)
        
        //isFavorited 값 변경 때마다 값 setting
        reactor.state
-           .map { $0.isFavorited }
-       .bind { [weak self] (isFavorited) in
+        .map { $0.isFavorited }
+        .bind { [weak self] (isFavorited) in
            guard let self = self else { return }
-           //UPDATE view
-           self.detailHotelInfoView.switchFavorite(isOn: isFavorited)
-           //UPDATE model
+            //UPDATE model
             if self.currentHotelModel?.favorite != isFavorited{
                 self.switchFavorite(isOn : isFavorited )
             }
+            //UPDATE view
+            self.detailHotelInfoView.switchFavorite(isOn: isFavorited)
        }
        .disposed(by: self.disposeBag)
+        
         //MARK: Action
        //favoriteSwitch 상태 변화 - action
-        self.detailHotelInfoView.favoriteSwitch.rx.isOn.changed
+        self.detailHotelInfoView.favoriteSwitch.rx.isOn
           .map { isOn in
               return .switchFavoriteButton(isOn: isOn) }
           .bind(to: reactor.action)
@@ -72,8 +78,8 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
     // MARK: - delegate
     
     func switchFavorite(isOn: Bool) {
-        //UPDATE favorite
         //UPDATE Model
+        //UPDATE favorite
         currentHotelModel?.favorite = isOn
         currentHotelModel?.saveCurrentTime()
         
@@ -176,9 +182,7 @@ class DetailHotelInfoViewReactor: Reactor {
         var newState = state
         switch mutation {
         case let .switchFavorite(isOn):
-            if state.hotelList.favorite != isOn { 
-                newState.isFavorited = isOn
-            }
+            newState.isFavorited = isOn
             return newState
         }
     }

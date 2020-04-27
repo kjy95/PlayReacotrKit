@@ -25,12 +25,7 @@ protocol DetailHotelInfoViewDelegate : class {
 }
 
 //호텔 상세 뷰
-class DetailHotelInfoView: UIView {
-    
-    //set reactorkit
-    var disposeBag = DisposeBag()
-    
-    
+class DetailHotelInfoView: UIView { 
     //-------------------------------------------------------------
     //MARK: - define value
     //

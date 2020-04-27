@@ -177,7 +177,7 @@ class FavoriteHotelTableTableViewController: UITableViewController, FavoriteHote
             cell.name.text = hotel.name
             let url = URL(string: hotel.thumbnail)
             let data = try? Data(contentsOf: url!)
-//            cell.thumbnail.image = UIImage(data: data!)
+            cell.thumbnail.image = UIImage(data: data!)
             cell.rate.text = "평점:\(String(hotel.rate))"
             cell.favoriteSwitch.isOn = hotel.favorite
             cell.favoritedTime.text = hotel.favoriteAssignTime
