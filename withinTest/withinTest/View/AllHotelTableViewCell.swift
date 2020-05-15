@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import ReactorKit
+import RxCocoa
+import RxSwift
 
 //MARK: - define protocol
 protocol AllHotelTableViewCellDelegate : class {
@@ -14,7 +17,7 @@ protocol AllHotelTableViewCellDelegate : class {
     func switchFavorite(isOn : Bool, indexPathRow: Int)
 }
 
-class AllHotelTableViewCell: UITableViewCell {
+class AllHotelTableViewCell: UITableViewCell, StoryboardView {
     //MARK: - Define value
     
     //UI 
@@ -22,6 +25,14 @@ class AllHotelTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel! 
     @IBOutlet weak var favoriteSwitch: UISwitch!
+    
+    //MARK: - Define value
+    var disposeBag = DisposeBag()
+    
+    //MARK: - Reactor Binding
+    func bind(reactor: AllHotelTableViewCellReactor) {
+        
+    }
     
     //delegate
     weak var delegate: AllHotelTableViewCellDelegate?
@@ -41,4 +52,26 @@ class AllHotelTableViewCell: UITableViewCell {
     @IBAction func favoriteSwitch(_ sender: UISwitch) {
         delegate?.switchFavorite(isOn: sender.isOn, indexPathRow: sender.tag) 
     }
+}
+
+class AllHotelTableViewCellReactor: Reactor {
+    enum Action {
+        case favoriteButtonTap
+    }
+    
+    enum Mutation {
+        case toggleIsFavorite(Bool)
+    }
+    
+    struct State {
+        var hotel: HotelListModel
+    }
+    
+    let initialState: State
+    
+    init(hotel: HotelListModel) {
+        self.initialState = State(hotel: hotel)
+        _ = self.state
+    }
+
 }

@@ -18,8 +18,9 @@ class MainListViewController: UIViewController, ReactorKit.View {
     var disposeBag = DisposeBag()
     
     func bind(reactor: MainListReactor) {
-        
+        //set cell
         self.mainTableView.register(MainListViewCell.self, forCellReuseIdentifier: "MainListViewCell")
+        
         reactor.state.map { $0.affiliates }
             .bind(to: self.mainTableView.rx.items(cellIdentifier: "MainListViewCell", cellType: MainListViewCell.self)) { (row, affiliate, cell) in
                 cell.reactor = MainListViewCellReactor(affiliate: affiliate)

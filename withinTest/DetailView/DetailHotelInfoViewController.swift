@@ -14,7 +14,7 @@ import RxCocoa
 /**
  상세 뷰 컨트롤러
  */
-class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelegate, StoryboardView{ 
+class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelegate, StoryboardView {
     // MARK: - define value
     
     var disposeBag = DisposeBag()
@@ -31,7 +31,7 @@ class DetailHotelInfoViewController: UIViewController, DetailHotelInfoViewDelega
     func bind(reactor: DetailHotelInfoViewReactor) {
        
        //MARK: state
-       //VC가 화면에 나올때 hotelList 값 setting, setView
+       //VC가 화면에 나올때 hotelList 값 setting, setView. 값이 다른 값으로 변할 때만 호출
        reactor.state
         .map { $0.hotelList }
         .distinctUntilChanged()

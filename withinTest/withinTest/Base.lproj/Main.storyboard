@@ -99,10 +99,13 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="All Hotel" id="aEi-iM-UIM"/>
+                    <connections>
+                        <outlet property="allHotelTableView" destination="EEb-KS-su4" id="50R-Jl-Vq7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mos-PA-0uM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-323.1884057971015" y="1043.9732142857142"/>
+            <point key="canvasLocation" x="-490" y="1053"/>
         </scene>
         <!--Detail Hotel Info View Controller-->
         <scene sceneID="ahX-mc-O8T">

@@ -8,14 +8,21 @@
 
 import UIKit
 import Alamofire
+import ReactorKit
+import RxSwift
+import Then
+import SnapKit
 
 /**
  모든 호텔리스트
  */
 
-class AllHotelTableViewController: UITableViewController, AllHotelTableViewCellDelegate {
+class AllHotelTableViewController: UITableViewController, AllHotelTableViewCellDelegate, StoryboardView {
+    //tableview 상수 선언
+    @IBOutlet var allHotelTableView: UITableView! = UITableView()
     
     //MARK: - Define value
+    var disposeBag = DisposeBag()
     
     //MARK: Model
     var allList = [HotelListModel]()
@@ -33,6 +40,32 @@ class AllHotelTableViewController: UITableViewController, AllHotelTableViewCellD
     
     // 테이블 뷰 바닥까지 왔는지 처음 한번만 확인 flag
     var isLoadTableView = false
+    
+    //MARK: - Reactor Binding
+    func bind(reactor: AllHotelTableViewControllerReactor) {
+        //테이블 뷰에 표현할 테이블뷰 셀 등록
+        self.allHotelTableView.register(AllHotelTableViewCell.self, forCellReuseIdentifier: "AllHotelCell")
+        
+        //cell에 model mapping
+        reactor.state.map { $0.hotelList }
+            .bind(to: self.allHotelTableView.rx.items(cellIdentifier: "AllHotelCell", cellType: AllHotelTableViewCell.self)) {
+                (row, hotelList, cell) in
+                cell.reactor = AllHotelTableViewCellReactor(hotel: hotelList)
+        }
+        .disposed(by: self.disposeBag)
+        
+        
+        //뷰 로드되면 리액터 이니셜라이즈 호출
+        self.rx.viewDidLoad
+        .map { [weak self] _ in
+            guard let self = self else { return Reactor.Action.initialize }
+            self.setUI()
+            return Reactor.Action.initialize }
+        .bind(to: reactor.action)
+        .disposed(by: self.disposeBag)
+       
+        
+    }
     
     //MARK: - VC lifeCycle
     override func viewDidLoad() {
@@ -174,9 +207,22 @@ class AllHotelTableViewController: UITableViewController, AllHotelTableViewCellD
         }
     }
     
+    // MARK: - SetUI
+    // tableView setting
+    private func setUI() {
+        self.view.backgroundColor = .white
+        self.allHotelTableView.do { tableView in
+            self.view.addSubview(tableView)
+            tableView.rowHeight = 100
+            tableView.separatorInset.left = 0
+            tableView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
+    }
     
     // MARK: - Table view data source
-
+/*
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -263,7 +309,7 @@ class AllHotelTableViewController: UITableViewController, AllHotelTableViewCellD
         
         let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailViewController") as! DetailHotelInfoViewController
         
-       //set reactor initial model\
+       //set reactor initial model
        detailViewController.reactor = DetailHotelInfoViewReactor(hotelList: allList[indexPath.row])
         //fullscreen으로 present
         detailViewController.modalPresentationStyle = .fullScreen
@@ -271,7 +317,7 @@ class AllHotelTableViewController: UITableViewController, AllHotelTableViewCellD
         self.present(detailViewController, animated: true, completion: nil)
         
 
-    }
+    }*/
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -317,4 +363,27 @@ class AllHotelTableViewController: UITableViewController, AllHotelTableViewCellD
     }
     */
 
+}
+
+class AllHotelTableViewControllerReactor: Reactor {
+    enum Action {
+        case switchFavoriteButton(isOn: Bool)
+        case initialize
+    }
+   
+    enum Mutation {
+        case switchFavorite(Bool)
+    }
+   
+    struct State {
+        var hotelList: [HotelListModel]
+    }
+
+   let initialState: State
+   
+   init() {
+        //hotel model 가져와서 그 안에 있는 favorite가져와서 셋팅
+        self.initialState = State(hotelList: [])
+   }
+    
 }
